@@ -69,12 +69,17 @@ def verify(p, q, g, e, m, r, s):
 def main():
     q = 139917935451086595095698262488180793987376018819267640047704411792656425400927
 
-    p, g, e, d = gen(q)
-    print('gen')
-    message = "I, Denis Belov, love MiKOZI".encode("utf-8")
-    r, s = sign(p, q, g, d, message)
-    print('sign')
-    print(verify(p, q, g, e, message, r, s))
+    with open("out.txt", "w") as file:
+        p, g, e, d = gen(q)
+        file.write("p = {0}\n".format(p))
+        file.write("g = {0}\n".format(g))
+        file.write("e = {0}\n".format(e))
+        file.write("d = {0}\n".format(d))
+        message = "I, Denis Belov, love MiKOZI".encode("utf-8")
+        r, s = sign(p, q, g, d, message)
+        file.write("r = {0}\n".format(r))
+        file.write("s = {0}\n".format(s))
+        print(verify(p, q, g, e, message, r, s))
 
 
 main()
