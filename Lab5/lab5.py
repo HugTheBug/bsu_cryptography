@@ -32,12 +32,9 @@ def get_hash(s):
 
 def gen(q):
     R = random.randrange((q + 1) * 2) * 2
-    R = 4 * q
     p = q * R + 1
     while modexp(2, q * R, p) != 1 or modexp(2, R, p) == 1:
         R = random.randrange((q + 1) * 2) * 2
-        # print(R)
-        R -= 2
         p = q * R + 1
     x = random.randrange(p)
     g = modexp(x, R, p)
